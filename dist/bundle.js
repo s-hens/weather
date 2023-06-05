@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("console.log(\"Hello world\");\n\n//# sourceURL=webpack://weather/./src/index.js?");
+eval("async function getWeather() {\n    event.preventDefault();\n\n    const locale = document.getElementById(\"locale\").value;\n\n    const APIresponse = await fetch(`https://api.weatherapi.com/v1/current.json?key=8149f881dcf243d0b39105948233005&q=${locale}&aqi=no`, {mode: \"cors\"});\n\n    const data = await APIresponse.json();\n\n    console.log(data);\n}\n\ndocument.getElementById(\"weather\").addEventListener(\"submit\", getWeather);\n\n//# sourceURL=webpack://weather/./src/index.js?");
 
 /***/ })
 
