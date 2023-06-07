@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;600&display=swap">
     <link rel="stylesheet" href="./style.css">
     <script src="./bundle.js" defer></script>
 </head>
@@ -13,12 +17,28 @@
     <div class="sky"></div>
 
     <main>
+        <div class="result" aria-live="polite">
+            <div class="placetime">
+                <h1 class="place">Honolulu</h1>
+                <h3 class="time">As of 12:45pm</h3>
+            </div>
+            <h2 class="condition">
+                Partly Cloudy
+            </h2>
+            <div class="temp">
+                Low: <h2 class="low">5</h2>
+            </div>
+            <div class="temp">
+                Current: <h2 class="current">5</h2>
+            </div>
+            <div class="temp">
+                High: <h2 class="high">5</h2>
+            </div>
+        </div>
         <form id="weather">
             <input type="text" id="locale" name="locale" placeholder="Town or postcode">
-            <button type="submit">Go</button>
+            <button type="submit" class="material-icons-round">search</button>
         </form>
-    
-        <div class="result" aria-live="polite"></div>
     </main>
     
 </body>

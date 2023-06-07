@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("document.getElementById(\"weather\").addEventListener(\"submit\", getLocale);\n\nfunction getLocale() {\n    event.preventDefault();\n    const locale = document.getElementById(\"locale\").value;\n    callAPI(locale);\n}\n\nasync function callAPI(locale) {\n    const APIresponse = await fetch(`https://api.weatherapi.com/v1/current.json?key=8149f881dcf243d0b39105948233005&q=${locale}&aqi=no`, {mode: \"cors\"});\n    const data = await APIresponse.json();\n    printData(data);\n}\n\nfunction printData(data) {\n    document.querySelector(\".result\").textContent = `In ${data.location.name} it is ${data.current.temp_f}°F and ${data.current.condition.text}`;\n}\n\n//# sourceURL=webpack://weather/./src/index.js?");
+eval("document.getElementById(\"weather\").addEventListener(\"submit\", getLocale);\n\nfunction getLocale() {\n    event.preventDefault();\n    const locale = document.getElementById(\"locale\").value;\n    callAPI(locale);\n}\n\nasync function callAPI(locale) {\n    // Get weather data\n    const APIresponse = await fetch(`https://api.weatherapi.com/v1/current.json?key=8149f881dcf243d0b39105948233005&q=${locale}&aqi=no`, {mode: \"cors\"});\n    const data = await APIresponse.json();\n    printData(data);\n    console.log(data);\n}\n\nfunction printData(data) {\n    document.querySelector(\".result\").textContent = `In ${data.location.name} it is ${data.current.temp_f}°F and ${data.current.condition.text}`;\n}\n\n//# sourceURL=webpack://weather/./src/index.js?");
 
 /***/ })
 
