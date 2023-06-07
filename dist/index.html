@@ -10,10 +10,16 @@
 </head>
 <body>
 
-    <form id="weather">
-        <input type="text" id="locale" name="locale">
-        <button type="submit">Go</button>
-    </form>
+    <div class="sky"></div>
+
+    <main>
+        <form id="weather">
+            <input type="text" id="locale" name="locale" placeholder="Town or postcode">
+            <button type="submit">Go</button>
+        </form>
+    
+        <div class="result" aria-live="polite"></div>
+    </main>
     
 </body>
 </html>
