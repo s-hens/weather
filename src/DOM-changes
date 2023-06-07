@@ -1,9 +1,0 @@
-function printData(data) {
-    document.querySelector(".place").textContent = `${data.location.name}`;
-    document.querySelector(".time").textContent = `As of ${data.location.localtime}`;
-    document.querySelector(".condition").textContent = `${data.current.condition.text}`;
-    document.querySelector(".temp").textContent = `${data.current.temp_f}`;
-    document.querySelector(".humidity").textContent = `${data.current.humidity}`;
-}
-
-export { printData };
