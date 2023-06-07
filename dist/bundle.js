@@ -7,26 +7,110 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/API-call.js":
+/*!*************************!*\
+  !*** ./src/API-call.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   callAPI: () => (/* binding */ callAPI)\n/* harmony export */ });\n/* harmony import */ var _DOM_changes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DOM-changes */ \"./src/DOM-changes\");\n\n\nasync function callAPI(locale) {\n    const APIresponse = await fetch(`https://api.weatherapi.com/v1/current.json?key=8149f881dcf243d0b39105948233005&q=${locale}&aqi=no`, {mode: \"cors\"});\n    const data = await APIresponse.json();\n    (0,_DOM_changes__WEBPACK_IMPORTED_MODULE_0__.printData)(data);\n}\n\n\n\n//# sourceURL=webpack://weather/./src/API-call.js?");
+
+/***/ }),
+
+/***/ "./src/DOM-changes":
+/*!*************************!*\
+  !*** ./src/DOM-changes ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   printData: () => (/* binding */ printData)\n/* harmony export */ });\nfunction printData(data) {\n    document.querySelector(\".place\").textContent = `${data.location.name}`;\n    document.querySelector(\".time\").textContent = `As of ${data.location.localtime}`;\n    document.querySelector(\".condition\").textContent = `${data.current.condition.text}`;\n    document.querySelector(\".temp\").textContent = `${data.current.temp_f}`;\n    document.querySelector(\".humidity\").textContent = `${data.current.humidity}`;\n}\n\n\n\n//# sourceURL=webpack://weather/./src/DOM-changes?");
+
+/***/ }),
 
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("document.getElementById(\"weather\").addEventListener(\"submit\", getLocale);\n\nfunction getLocale() {\n    event.preventDefault();\n    const locale = document.getElementById(\"locale\").value;\n    callAPI(locale);\n}\n\nasync function callAPI(locale) {\n    // Get weather data\n    const APIresponse = await fetch(`https://api.weatherapi.com/v1/current.json?key=8149f881dcf243d0b39105948233005&q=${locale}&aqi=no`, {mode: \"cors\"});\n    const data = await APIresponse.json();\n    printData(data);\n    console.log(data);\n}\n\nfunction printData(data) {\n    document.querySelector(\".result\").textContent = `In ${data.location.name} it is ${data.current.temp_f}°F and ${data.current.condition.text}`;\n}\n\n//# sourceURL=webpack://weather/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _user_inputs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user-inputs */ \"./src/user-inputs.js\");\n\n\ndocument.getElementById(\"weather\").addEventListener(\"submit\", _user_inputs__WEBPACK_IMPORTED_MODULE_0__.getLocale);\n\n//# sourceURL=webpack://weather/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/user-inputs.js":
+/*!****************************!*\
+  !*** ./src/user-inputs.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   getLocale: () => (/* binding */ getLocale)\n/* harmony export */ });\n/* harmony import */ var _API_call__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./API-call */ \"./src/API-call.js\");\n\n\nfunction getLocale() {\n    event.preventDefault();\n    const locale = document.getElementById(\"locale\").value;\n    (0,_API_call__WEBPACK_IMPORTED_MODULE_0__.callAPI)(locale);\n}\n\n\n\n//# sourceURL=webpack://weather/./src/user-inputs.js?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.js"]();
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()
 ;
