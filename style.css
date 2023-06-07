@@ -1,3 +1,39 @@
+/* Global */
+
+:root {
+    --bluesky: linear-gradient(180deg, #1976D2 0%, #90CAF9 100%);
+    --whitecloud: #FAFAFA;
+    --cloudheight: 20vh;
+}
+
 body {
-    margin: 30px;
+   margin: 0;
+}
+
+main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.sky {
+    padding: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background: var(--bluesky);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
