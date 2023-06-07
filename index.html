@@ -19,7 +19,7 @@
     <main>
         <div class="result" aria-live="polite">
             <div class="placetime">
-                <h2 class="place"></h2>
+                <h1 class="place"></h1>
                 <h3 class="place-detail"></h3>
                 <span class="time"></span>
                 <span class="date"></span>
@@ -28,10 +28,14 @@
             <h2 class="temp"></h2>
             <h2 class="humidity"></h2>
         </div>
-        <form id="weather">
-            <input type="text" id="locale" name="locale" placeholder="Town, postcode, or airport code">
-            <button type="submit" class="material-icons-round">search</button>
-        </form>
+        <div class="options">
+            <form id="weather">
+                <input type="text" id="locale" name="locale" placeholder="Search a town, postcode, or airport">
+                <button type="submit" class="material-icons-round">search</button>
+            </form>
+            <button class="units">Switch to Celsius</button>
+            <button class="animation">Turn Off Animations</button>
+        </div>
     </main>
     
 </body>
