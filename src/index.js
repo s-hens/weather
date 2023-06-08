@@ -1,5 +1,4 @@
-import { getLocale } from "./user-inputs";
-import { callAPI } from "./API-call";
+import { getLocale, callAPI } from "./data";
 import { switchUnit } from "./DOM-changes";
 
 document.getElementById("weather").addEventListener("submit", getLocale);

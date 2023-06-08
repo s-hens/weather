@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { lastData } from "./API-call";
+import { lastData } from "./data";
 
 // Display results on the page
 function printData(data) {
