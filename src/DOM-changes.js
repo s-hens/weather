@@ -39,10 +39,10 @@ function printData(data) {
     document.querySelector(".humidity").textContent = `${data.current.humidity}%`;
 }
 
-// Switch units
+// Toggle units
 let currentUnit = "F";
 
-function switchUnit() {
+function toggleUnit() {
     if (currentUnit == "F") {
         currentUnit = "C";
         document.querySelector(".units").textContent = "Switch to Fahrenheit";
@@ -54,4 +54,20 @@ function switchUnit() {
     }
 }
 
-export { printData, switchUnit };
+// Toggle animations
+let animations = true;
+
+function toggleAnimations() {
+    document.querySelectorAll("button").forEach(button => {
+        button.classList.toggle("no-animation");
+    })
+    if (animations == true) {
+        animations = false;
+        document.querySelector(".animation").textContent = "Turn On Animations";
+    } else if (animations == false) {
+        animations = true;
+        document.querySelector(".animation").textContent = "Turn Off Animations";
+    }
+}
+
+export { printData, toggleUnit, toggleAnimations };
