@@ -29,7 +29,7 @@ function printData(data) {
     } else if (currentUnit == "C") {
         temp = `${data.current.temp_c}° C`;
     }
-    // Fill in DOM
+    // Display information
     document.querySelector(".place").textContent = `${data.location.name}`;
     document.querySelector(".place-detail").textContent = `${placeDetail}`;
     document.querySelector(".time").textContent = `As of ${time}`;
@@ -37,10 +37,17 @@ function printData(data) {
     document.querySelector(".condition").textContent = `${data.current.condition.text}`;
     document.querySelector(".temp").textContent = `${temp}`;
     document.querySelector(".humidity").textContent = `${data.current.humidity}%`;
+    // Change sky
+    console.log(data.current.is_day);
+    if (data.current.is_day == 1) {
+        document.querySelector(".sky").classList.add("clear");
+    } else if (data.current.is_day == 0) {
+        document.querySelector(".sky").classList.add("night");
+    }
 }
 
 // Toggle units
-let currentUnit = "F";
+let currentUnit = "C";
 
 function toggleUnit() {
     if (currentUnit == "F") {
