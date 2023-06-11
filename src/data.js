@@ -1,6 +1,6 @@
-import { printData } from "./DOM-changes";
+import { printData, displaySky } from "./DOM-changes";
 
-// This variable holds onto the most recent API call
+// This variable holds onto the most recent API results
 // in case someone wants to switch from C to F
 let lastData;
 
@@ -17,6 +17,7 @@ async function callAPI(locale) {
     const data = await APIresponse.json();
     lastData = data;
     printData(data);
+    displaySky(data);
 }
 
 export { getLocale, callAPI, lastData };

@@ -171,3 +171,60 @@ input[type="text"]:focus {
 .night {
     background: linear-gradient(180deg, #191745 0%, #303F9F 100%);
 }
+
+/* Stars */
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+  
+.star {
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: fixed;
+}
+
+.star:nth-of-type(10n) {
+    animation: 4s infinite twinkle1;
+}
+  
+.star:nth-of-type(15n) {
+    animation: 5s infinite twinkle2;
+}
+  
+@keyframes twinkle1 {
+    from {
+        scale: 1;
+        opacity: 0.25;
+    }
+    50% {
+        box-shadow: 0 0 5px 1px rgba(250, 250, 250, 0.5);
+        scale: 1.25;
+        opacity: 1;
+    }
+    to {
+        scale: 1;
+        opacity: 0.25;
+    }
+}
+  
+@keyframes twinkle2 {
+    from {
+        box-shadow: 0 0 5px 1px rgba(250, 250, 250, 0.5);
+        scale: 1.25;
+        opacity: 1;
+    }
+    50% {
+        scale: 1;
+        opacity: 0.25;
+    }
+    to {
+        box-shadow: 0 0 5px 1px rgba(250, 250, 250, 0.5);
+        scale: 1.25;
+        opacity: 1;
+    }
+}
