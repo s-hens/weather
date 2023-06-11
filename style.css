@@ -1,7 +1,6 @@
 /* Global */
 
 :root {
-    --bluesky: linear-gradient(180deg, #1976D2 0%, #90CAF9 100%);
     --whitecloud: #FAFAFA;
     --cloudheight: 20vh;
 }
@@ -156,8 +155,19 @@ input[type="text"]:focus {
     right: 0;
     bottom: 0;
     z-index: 0;
-    background: var(--bluesky);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.clear {
+    background: linear-gradient(180deg, #1976D2 0%, #90CAF9 100%);
+}
+
+.overcast {
+    background: linear-gradient(180deg, #455A64 0%, #B0BEC5 100%);
+}
+
+.night {
+    background: linear-gradient(180deg, #191745 0%, #303F9F 100%);
 }
