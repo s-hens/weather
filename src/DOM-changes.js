@@ -55,18 +55,62 @@ function printData(data) {
 
 // Display sky
 function displaySky(data) {
-    console.log(data.current.condition.code);
     let condition = data.current.condition.code;
 
-    switch(true) {
-        case condition == clearCode:
-            console.log("It's clear");
-            break;
+    if (data.current.is_day == 1) {
+        if (condition == clearCode) {
+            // Clear day
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-night", "overcast-day", "overcast-night");
+            document.querySelector(".stars").replaceChildren();
+            document.querySelector(".clouds").style.display = "none";
+            // Add new
+            document.querySelector(".sky").classList.add("clear-day");
+        } else if (condition == partlyCloudyCode) {
+            // Partly cloudy day
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-night", "overcast-day", "overcast-night");
+            document.querySelector(".stars").replaceChildren();
+            // Add new
+            document.querySelector(".clouds").style.display = "block";
+            document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.add("light-cloud");
+            })
+            document.querySelector(".sky").classList.add("clear-day");
+        }
+    } else if (data.current.is_day == 0) {
+        if (condition == clearCode) {
+            // Clear night
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-day", "overcast-day", "overcast-night");
+            document.querySelector(".clouds").style.display = "none";
+            // Add new
+            document.querySelector(".sky").classList.add("clear-night");
+            makeStars();
+        } else if (condition == partlyCloudyCode) {
+            // Partly cloudy night
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-day", "overcast-day", "overcast-night");
+            // Add new
+            document.querySelector(".clouds").style.display = "block";
+            document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.add("dark-cloud");
+            })
+            document.querySelector(".sky").classList.add("clear-night");
+            makeStars();
+        }
+    }
+}
+
+/*
         case condition == partlyCloudyCode:
             console.log("It's partly cloudy");
             break;
         case cloudyCodes.includes(condition):
-            console.log("It's cloudy");
+            //document.querySelector(".sky").classList.remove("night");
+            //document.querySelector(".sky").classList.remove("clear");
+            document.querySelector(".sky").classList.add("overcast");
+            document.querySelector(".clouds").style.display = "block";
             break;
         case rainCodes.includes(condition):
             console.log("It's raining");
@@ -74,21 +118,7 @@ function displaySky(data) {
         case snowCodes.includes(condition):
             console.log("It's snowing");
             break;
-    }
-
-
-
-
-    if (data.current.is_day == 1) {
-        document.querySelector(".sky").classList.remove("night");
-        document.querySelector(".sky").classList.add("clear");
-        document.querySelector(".stars").replaceChildren();
-    } else if (data.current.is_day == 0) {
-        document.querySelector(".sky").classList.remove("clear");
-        document.querySelector(".sky").classList.add("night");
-        makeStars();
-    }
-}
+*/
 
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -111,10 +141,10 @@ function makeStars() {
         star.style.top = `${top}%`;
         star.style.left = `${left}%`;
         star.style.transform = `translate(${offsetX}px, ${offsetY}px`;
-        document.querySelector(".stars").appendChild(star);
         if (animations == false) {
-            star.classList.add("no-animation");
+            star.style.animation = "none";
         }
+        document.querySelector(".stars").appendChild(star);
     }
 }
 
