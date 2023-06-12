@@ -12,8 +12,6 @@ const rainCodes = [ 1063, 1072, 1087, 1150, 1153, 1168, 1171, 1180, 1183, 1186, 
 
 const snowCodes = [ 1066, 1069, 1114, 1117, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264, 1279, 1282 ];
 
-
-
 // Display results on the page
 function printData(data) {
     // Determine some details
@@ -59,7 +57,9 @@ function displaySky(data) {
 
     if (data.current.is_day == 1) {
         if (condition == clearCode) {
-            // Clear day
+                    ///////////////
+                    // Clear day //
+                    ///////////////
             // Remove old
             document.querySelector(".sky").classList.remove("clear-night", "overcast-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
@@ -67,20 +67,39 @@ function displaySky(data) {
             // Add new
             document.querySelector(".sky").classList.add("clear-day");
         } else if (condition == partlyCloudyCode) {
-            // Partly cloudy day
+                    ///////////////////////
+                    // Partly cloudy day //
+                    ///////////////////////                    
             // Remove old
             document.querySelector(".sky").classList.remove("clear-night", "overcast-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
             // Add new
             document.querySelector(".clouds").style.display = "block";
             document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.remove("dark-cloud");
                 cloud.classList.add("light-cloud");
             })
             document.querySelector(".sky").classList.add("clear-day");
+        } else if (cloudyCodes.includes(condition)) {
+                    ////////////////
+                    // Cloudy day //
+                    ////////////////
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-night");
+            document.querySelector(".stars").replaceChildren();
+            // Add new
+            document.querySelector(".clouds").style.display = "block";
+            document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.remove("light-cloud");
+                cloud.classList.add("dark-cloud");
+            })
+            document.querySelector(".sky").classList.add("overcast-day");
         }
     } else if (data.current.is_day == 0) {
         if (condition == clearCode) {
-            // Clear night
+                    /////////////////
+                    // Clear night //
+                    /////////////////
             // Remove old
             document.querySelector(".sky").classList.remove("clear-day", "overcast-day", "overcast-night");
             document.querySelector(".clouds").style.display = "none";
@@ -88,7 +107,9 @@ function displaySky(data) {
             document.querySelector(".sky").classList.add("clear-night");
             makeStars();
         } else if (condition == partlyCloudyCode) {
-            // Partly cloudy night
+                    /////////////////////////
+                    // Partly cloudy night //
+                    /////////////////////////
             // Remove old
             document.querySelector(".sky").classList.remove("clear-day", "overcast-day", "overcast-night");
             // Add new
@@ -98,20 +119,24 @@ function displaySky(data) {
             })
             document.querySelector(".sky").classList.add("clear-night");
             makeStars();
-        }
+        } else if (cloudyCodes.includes(condition)) {
+                    //////////////////
+                    // Cloudy night //
+                    //////////////////
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-day");
+            // Add new
+            document.querySelector(".clouds").style.display = "block";
+            document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.remove("light-cloud");
+                cloud.classList.add("dark-cloud");
+            })
+            document.querySelector(".sky").classList.add("overcast-night");
+            makeStars();
+}
     }
 }
-
 /*
-        case condition == partlyCloudyCode:
-            console.log("It's partly cloudy");
-            break;
-        case cloudyCodes.includes(condition):
-            //document.querySelector(".sky").classList.remove("night");
-            //document.querySelector(".sky").classList.remove("clear");
-            document.querySelector(".sky").classList.add("overcast");
-            document.querySelector(".clouds").style.display = "block";
-            break;
         case rainCodes.includes(condition):
             console.log("It's raining");
             break;
