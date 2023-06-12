@@ -2,7 +2,7 @@
 
 :root {
     --whitecloud: #FAFAFA;
-    --cloudheight: 20vh;
+    --cloudheight: 30vh;
 }
 
 body {
@@ -53,10 +53,6 @@ button:hover {
     cursor: pointer;
     background-color: #151515;
     color: #FFFFFF;
-}
-
-.no-animation {
-    transition: none;
 }
 
 /* Results display */
@@ -160,27 +156,133 @@ input[type="text"]:focus {
     justify-content: space-between;
 }
 
-.clear {
+.clear-day {
     background: linear-gradient(180deg, #1976D2 0%, #90CAF9 100%);
 }
 
-.overcast {
-    background: linear-gradient(180deg, #455A64 0%, #B0BEC5 100%);
-}
-
-.night {
+.clear-night {
     background: linear-gradient(180deg, #191745 0%, #303F9F 100%);
 }
 
-/* Stars */
+.overcast-day {
+    background: linear-gradient(180deg, #455A64 0%, #B0BEC5 100%);
+}
 
-.stars {
+.overcast-night {
+    background: linear-gradient(180deg, #131313 0%, #37474F 100%);
+}
+
+.clouds, .stars {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 }
+
+/* Clouds */
+
+.clouds {
+    display: none;
+}
+
+.light-cloud, .light-cloud::before, .light-cloud::after {
+    background-color: #FFFFFF;
+}
+
+.dark-cloud, .dark-cloud::before, .dark-cloud::after {
+    background-color: #455A64;
+}
+
+.cloud {
+    opacity: 0.75;
+    border-radius: calc(var(--cloudheight) * 0.5);
+    height: var(--cloudheight);
+    width: calc(var(--cloudheight) * 3);
+    margin-top: calc(var(--cloudheight) * 0.75);
+    position: fixed;
+}
+
+.cloud:first-of-type {
+    animation: 10s infinite swell, 4s infinite bob;
+    top: calc(var(--cloudheight) * -0.25);
+    left: calc(var(--cloudheight) * -0.25);
+}
+
+.cloud:first-of-type::before {
+    content: "";
+    border-radius: 50%;
+    height: 175%;
+    width: 60%;
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    animation: 25s infinite bob;
+}
+
+.cloud:first-of-type::after {
+    content: "";
+    border-radius: 50%;
+    height: var(--cloudheight);
+    width: var(--cloudheight);
+    position: absolute;
+    top: -75%;
+    left: 55%;
+}
+
+.cloud:last-of-type {
+    animation: 15s infinite swell, 4s infinite bob;
+    bottom: calc(var(--cloudheight) * -0.25);
+    right: calc(var(--cloudheight) * -0.25);
+}
+
+.cloud:last-of-type::before {
+    content: "";
+    border-radius: 50%;
+    height: 160%;
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+    animation: 20s infinite bob;
+}
+
+.cloud:last-of-type::after {
+    content: "";
+    border-radius: 50%;
+    height: var(--cloudheight);
+    width: var(--cloudheight);
+    position: absolute;
+    top: -50%;
+    left: 15%;
+    animation: 5s infinite swell;
+}
+
+@keyframes swell {
+    from {
+        scale: 1;
+    }
+    50% {
+        scale: 1.1;
+    }
+    to {
+        scale: 1;
+    }
+}
+  
+@keyframes bob {
+    from {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10%);
+    }
+    to {
+       transform: translateY(0);
+    }
+}
+
+/* Stars */
   
 .star {
     background-color: #ffffff;
@@ -229,8 +331,8 @@ input[type="text"]:focus {
     }
 }
 
-/* No animation option */
+/* No animation settings */
 
 .no-animation {
-    animation: none;
+    transition: none;
 }
