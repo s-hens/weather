@@ -228,3 +228,9 @@ input[type="text"]:focus {
         opacity: 1;
     }
 }
+
+/* No animation option */
+
+.no-animation {
+    animation: none;
+}
