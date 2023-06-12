@@ -1,5 +1,18 @@
 import { parse, format } from "date-fns";
-import { lastData } from "./data";
+import { currentUnit, animations } from "./user-settings";
+
+// Weather result codes
+const clearCode = 1000;
+
+const partlyCloudyCode = 1003;
+
+const cloudyCodes = [ 1006, 1009, 1030, 1135, 1147 ];
+
+const rainCodes = [ 1063, 1072, 1087, 1150, 1153, 1168, 1171, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1240, 1243, 1246, 1273, 1276 ];
+
+const snowCodes = [ 1066, 1069, 1114, 1117, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264, 1279, 1282 ];
+
+
 
 // Display results on the page
 function printData(data) {
@@ -42,9 +55,36 @@ function printData(data) {
 
 // Display sky
 function displaySky(data) {
+    console.log(data.current.condition.code);
+    let condition = data.current.condition.code;
+
+    switch(true) {
+        case condition == clearCode:
+            console.log("It's clear");
+            break;
+        case condition == partlyCloudyCode:
+            console.log("It's partly cloudy");
+            break;
+        case cloudyCodes.includes(condition):
+            console.log("It's cloudy");
+            break;
+        case rainCodes.includes(condition):
+            console.log("It's raining");
+            break;
+        case snowCodes.includes(condition):
+            console.log("It's snowing");
+            break;
+    }
+
+
+
+
     if (data.current.is_day == 1) {
+        document.querySelector(".sky").classList.remove("night");
         document.querySelector(".sky").classList.add("clear");
+        document.querySelector(".stars").replaceChildren();
     } else if (data.current.is_day == 0) {
+        document.querySelector(".sky").classList.remove("clear");
         document.querySelector(".sky").classList.add("night");
         makeStars();
     }
@@ -72,38 +112,10 @@ function makeStars() {
         star.style.left = `${left}%`;
         star.style.transform = `translate(${offsetX}px, ${offsetY}px`;
         document.querySelector(".stars").appendChild(star);
+        if (animations == false) {
+            star.classList.add("no-animation");
+        }
     }
 }
 
-// Toggle units
-let currentUnit = "C";
-
-function toggleUnit() {
-    if (currentUnit == "F") {
-        currentUnit = "C";
-        document.querySelector(".units").textContent = "Switch to Fahrenheit";
-        printData(lastData);
-    } else if (currentUnit == "C") {
-        currentUnit = "F";
-        document.querySelector(".units").textContent = "Switch to Celsius";
-        printData(lastData);
-    }
-}
-
-// Toggle animations
-let animations = true;
-
-function toggleAnimations() {
-    document.querySelectorAll("button").forEach(button => {
-        button.classList.toggle("no-animation");
-    })
-    if (animations == true) {
-        animations = false;
-        document.querySelector(".animation").textContent = "Turn On Animations";
-    } else if (animations == false) {
-        animations = true;
-        document.querySelector(".animation").textContent = "Turn Off Animations";
-    }
-}
-
-export { printData, displaySky, toggleUnit, toggleAnimations };
+export { printData, displaySky };
