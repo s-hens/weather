@@ -29,7 +29,7 @@ function printData(data) {
             placeDetail = `${data.location.region}, ${data.location.country}`;
     }
     let now = parse(data.current.last_updated, "yyyy-LL-dd H:mm", new Date());
-    let time = format(now, "h:m aa");
+    let time = format(now, "h:mm aa");
     let date = format(now, "iiii, LLLL do");
     let temp;
     if (currentUnit == "F") {
