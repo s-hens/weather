@@ -172,7 +172,7 @@ input[type="text"]:focus {
     background: linear-gradient(180deg, #131313 0%, #37474F 100%);
 }
 
-.clouds, .stars {
+.clouds, .stars, .rain {
     position: fixed;
     top: 0;
     left: 0;
@@ -328,6 +328,27 @@ input[type="text"]:focus {
         box-shadow: 0 0 5px 1px rgba(250, 250, 250, 0.5);
         scale: 1.25;
         opacity: 1;
+    }
+}
+
+/* Rain */
+
+.raindrop {
+    background: #ffffff;
+    width: 2px;
+    height: 20px;
+    border-radius: 50%;
+    position: fixed;
+    animation: 2s linear infinite rainfall;
+}
+  
+@keyframes rainfall {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(200vh);
+        opacity: 0;
     }
 }
 
