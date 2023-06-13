@@ -35,6 +35,7 @@ function toggleAnimations() {
 function detectMotionPrefs() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)") == true) {
         animations = false;
+        checkAnimations();
     }
 }
 
