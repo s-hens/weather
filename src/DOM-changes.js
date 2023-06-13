@@ -63,6 +63,7 @@ function displaySky(data) {
             // Remove old
             document.querySelector(".sky").classList.remove("clear-night", "overcast-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
+            document.querySelector(".rain").replaceChildren();
             document.querySelector(".clouds").style.display = "none";
             // Add new
             document.querySelector(".sky").classList.add("clear-day");
@@ -73,6 +74,7 @@ function displaySky(data) {
             // Remove old
             document.querySelector(".sky").classList.remove("clear-night", "overcast-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
+            document.querySelector(".rain").replaceChildren();
             // Add new
             document.querySelector(".clouds").style.display = "block";
             document.querySelectorAll(".cloud").forEach(cloud => {
@@ -87,6 +89,7 @@ function displaySky(data) {
             // Remove old
             document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
+            document.querySelector(".rain").replaceChildren();
             // Add new
             document.querySelector(".clouds").style.display = "block";
             document.querySelectorAll(".cloud").forEach(cloud => {
@@ -94,6 +97,21 @@ function displaySky(data) {
                 cloud.classList.add("dark-cloud");
             })
             document.querySelector(".sky").classList.add("overcast-day");
+        } else if (rainCodes.includes(condition)) {
+                    ///////////////
+                    // Rainy day //
+                    ///////////////
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-night");
+            document.querySelector(".stars").replaceChildren();
+            // Add new
+            document.querySelector(".clouds").style.display = "block";
+            document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.remove("light-cloud");
+                cloud.classList.add("dark-cloud");
+            })
+            document.querySelector(".sky").classList.add("overcast-day");
+            makeRain();
         }
     } else if (data.current.is_day == 0) {
         if (condition == clearCode) {
@@ -101,6 +119,7 @@ function displaySky(data) {
                     // Clear night //
                     /////////////////
             // Remove old
+            document.querySelector(".rain").replaceChildren();
             document.querySelector(".sky").classList.remove("clear-day", "overcast-day", "overcast-night");
             document.querySelector(".clouds").style.display = "none";
             // Add new
@@ -111,7 +130,9 @@ function displaySky(data) {
                     // Partly cloudy night //
                     /////////////////////////
             // Remove old
+            document.querySelector(".rain").replaceChildren();
             document.querySelector(".sky").classList.remove("clear-day", "overcast-day", "overcast-night");
+            document.querySelector(".stars").replaceChildren();
             // Add new
             document.querySelector(".clouds").style.display = "block";
             document.querySelectorAll(".cloud").forEach(cloud => {
@@ -124,6 +145,7 @@ function displaySky(data) {
                     // Cloudy night //
                     //////////////////
             // Remove old
+            document.querySelector(".rain").replaceChildren();
             document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-day");
             // Add new
             document.querySelector(".clouds").style.display = "block";
@@ -170,6 +192,26 @@ function makeStars() {
             star.style.animation = "none";
         }
         document.querySelector(".stars").appendChild(star);
+    }
+}
+
+function makeRain() {
+    document.querySelector(".rain").replaceChildren();
+    for (let i = 0; i < 800; i++) {
+      let opacity = randomIntFromInterval(25, 50);
+      let top = randomIntFromInterval(-100, -20);
+      let left = randomIntFromInterval(1, 100);
+      let offsetX = randomIntFromInterval(-3, 3);
+      let offsetY = randomIntFromInterval(-3, 3);
+      let delay = randomIntFromInterval(0, 4000);
+      let raindrop = document.createElement("div");
+      raindrop.classList.add("raindrop");
+      raindrop.style.opacity = `${opacity}%`;
+      raindrop.style.top = `${top}%`;
+      raindrop.style.left = `${left}%`;
+      raindrop.style.transform = `translate(${offsetX}px, ${offsetY}px`;
+      raindrop.style.animationDelay = `${delay}ms`;
+      document.querySelector(".rain").appendChild(raindrop);
     }
 }
 
