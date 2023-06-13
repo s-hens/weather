@@ -172,7 +172,7 @@ input[type="text"]:focus {
     background: linear-gradient(180deg, #131313 0%, #37474F 100%);
 }
 
-.clouds, .stars, .rain {
+.stars, .rain, .snow, .clouds {
     position: fixed;
     top: 0;
     left: 0;
@@ -351,6 +351,38 @@ input[type="text"]:focus {
         opacity: 0;
     }
 }
+
+/* Snow */
+
+.snowflake {
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: fixed;
+    animation: 15s linear infinite snowfall, 10s infinite sway;
+}
+  
+@keyframes snowfall {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(200vh);
+        opacity: 0;
+    }
+}
+  
+@keyframes sway {
+    from {
+        margin: 0;
+    }
+    50% {
+        margin-left: 25px;
+    }
+    to {
+        margin: 0;
+    }
+}
+
 
 /* No animation settings */
 
