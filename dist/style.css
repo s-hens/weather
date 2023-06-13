@@ -57,13 +57,16 @@ button:hover {
 /* Results display */
 
 main {
+    /*
     width: calc(100vw / 3);
     min-width: max-content;
+    */
+    width: clamp(max-content, calc(100vw / 3), 100vw);
     z-index: 1;
     display: grid;
     grid-template-rows: auto auto;
-    gap: 50px;
-    margin: 50px;
+    gap: 25px;
+    margin: 25px;
 }
 
 .result {
@@ -397,8 +400,8 @@ input[type="text"]:focus {
     fill: #151515;
     background-color: #ffffff;
     position: fixed;
-    bottom: 24px;
-    left: 24px;
+    bottom: 25px;
+    left: 25px;
     height: 24px;
     border-radius: 10px;
     padding: 10px;

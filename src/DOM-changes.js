@@ -19,7 +19,7 @@ function printData(data) {
         case !data.location.country:
             placeDetail = data.location.region;
             break;
-        case data.location.country == "United States of America":
+        case data.location.country == "United States of America" || data.location.country == "USA United States of America":
             placeDetail = `${data.location.region}, USA`;
             break;
         case data.location.country == "United Kingdom":
