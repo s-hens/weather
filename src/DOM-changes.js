@@ -54,6 +54,7 @@ function printData(data) {
 // Display sky
 function displaySky(data) {
     let condition = data.current.condition.code;
+    //let condition = 1066;
 
     if (data.current.is_day == 1) {
         if (condition == clearCode) {
@@ -64,6 +65,7 @@ function displaySky(data) {
             document.querySelector(".sky").classList.remove("clear-night", "overcast-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
             document.querySelector(".rain").replaceChildren();
+            document.querySelector(".snow").replaceChildren();
             document.querySelector(".clouds").style.display = "none";
             // Add new
             document.querySelector(".sky").classList.add("clear-day");
@@ -75,6 +77,7 @@ function displaySky(data) {
             document.querySelector(".sky").classList.remove("clear-night", "overcast-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
             document.querySelector(".rain").replaceChildren();
+            document.querySelector(".snow").replaceChildren();
             // Add new
             document.querySelector(".clouds").style.display = "block";
             document.querySelectorAll(".cloud").forEach(cloud => {
@@ -90,6 +93,7 @@ function displaySky(data) {
             document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
             document.querySelector(".rain").replaceChildren();
+            document.querySelector(".snow").replaceChildren();
             // Add new
             document.querySelector(".clouds").style.display = "block";
             document.querySelectorAll(".cloud").forEach(cloud => {
@@ -104,6 +108,7 @@ function displaySky(data) {
             // Remove old
             document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-night");
             document.querySelector(".stars").replaceChildren();
+            document.querySelector(".snow").replaceChildren();
             // Add new
             document.querySelector(".clouds").style.display = "block";
             document.querySelectorAll(".cloud").forEach(cloud => {
@@ -112,6 +117,23 @@ function displaySky(data) {
             })
             document.querySelector(".sky").classList.add("overcast-day");
             makeRain();
+        } else if (snowCodes.includes(condition)) {
+                    ///////////////
+                    // Snowy day //
+                    ///////////////
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-night");
+            document.querySelector(".stars").replaceChildren();
+            document.querySelector(".rain").replaceChildren();
+
+            // Add new
+            document.querySelector(".clouds").style.display = "block";
+            document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.remove("light-cloud");
+                cloud.classList.add("dark-cloud");
+            })
+            document.querySelector(".sky").classList.add("overcast-day");
+            makeSnow();
         }
     } else if (data.current.is_day == 0) {
         if (condition == clearCode) {
@@ -168,16 +190,28 @@ function displaySky(data) {
                 cloud.classList.add("dark-cloud");
             })
             document.querySelector(".sky").classList.add("overcast-night");
-            makeStars();
+            //makeStars();
             makeRain();
+        } else if (snowCodes.includes(condition)) {
+                    /////////////////
+                    // Snowy night //
+                    /////////////////
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-day");
+            document.querySelector(".stars").replaceChildren();
+            document.querySelector(".rain").replaceChildren();
+
+            // Add new
+            document.querySelector(".clouds").style.display = "block";
+            document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.remove("light-cloud");
+                cloud.classList.add("dark-cloud");
+            })
+            document.querySelector(".sky").classList.add("overcast-night");
+            makeSnow();
         }
     }
 }
-/*
-case snowCodes.includes(condition):
-    console.log("It's snowing");
-    break;
-*/
 
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -210,20 +244,41 @@ function makeStars() {
 function makeRain() {
     document.querySelector(".rain").replaceChildren();
     for (let i = 0; i < 800; i++) {
-      let opacity = randomIntFromInterval(25, 50);
-      let top = randomIntFromInterval(-100, -20);
-      let left = randomIntFromInterval(1, 100);
-      let offsetX = randomIntFromInterval(-3, 3);
-      let offsetY = randomIntFromInterval(-3, 3);
-      let delay = randomIntFromInterval(0, 4000);
-      let raindrop = document.createElement("div");
-      raindrop.classList.add("raindrop");
-      raindrop.style.opacity = `${opacity}%`;
-      raindrop.style.top = `${top}%`;
-      raindrop.style.left = `${left}%`;
-      raindrop.style.transform = `translate(${offsetX}px, ${offsetY}px`;
-      raindrop.style.animationDelay = `${delay}ms`;
-      document.querySelector(".rain").appendChild(raindrop);
+        let opacity = randomIntFromInterval(25, 50);
+        let top = randomIntFromInterval(-100, -20);
+        let left = randomIntFromInterval(1, 100);
+        let offsetX = randomIntFromInterval(-3, 3);
+        let offsetY = randomIntFromInterval(-3, 3);
+        let delay = randomIntFromInterval(0, 4000);
+        let raindrop = document.createElement("div");
+        raindrop.classList.add("raindrop");
+        raindrop.style.opacity = `${opacity}%`;
+        raindrop.style.top = `${top}%`;
+        raindrop.style.left = `${left}%`;
+        raindrop.style.transform = `translate(${offsetX}px, ${offsetY}px`;
+        raindrop.style.animationDelay = `${delay}ms`;
+        document.querySelector(".rain").appendChild(raindrop);
+    }
+}
+
+function makeSnow() {
+    document.querySelector(".snow").replaceChildren();
+    for (let i = 0; i < 800; i++) {
+        let size = randomIntFromInterval(5, 10);
+        let top = randomIntFromInterval(-100, -20);
+        let left = randomIntFromInterval(1, 100);
+        let offsetX = randomIntFromInterval(-3, 3);
+        let offsetY = randomIntFromInterval(-3, 3);
+        let delay = randomIntFromInterval(0, 15000);
+        let snowflake = document.createElement("div");
+        snowflake.classList.add("snowflake");
+        snowflake.style.height = `${size}px`;
+        snowflake.style.width = `${size}px`;
+        snowflake.style.top = `${top}%`;
+        snowflake.style.left = `${left}%`;
+        snowflake.style.transform = `translate(${offsetX}px, ${offsetY}px`;
+        snowflake.style.animationDelay = `${delay}ms`;
+        document.querySelector(".snow").appendChild(snowflake);
     }
 }
 
