@@ -1,7 +1,6 @@
 /* Global */
 
 :root {
-    --whitecloud: #FAFAFA;
     --cloudheight: 30vh;
 }
 
@@ -398,11 +397,11 @@ input[type="text"]:focus {
     fill: #151515;
     background-color: #ffffff;
     position: fixed;
-    bottom: 25px;
-    left: 25px;
-    height: 25px;
-    padding: 5px;
-    border-radius: 50%;
+    bottom: 24px;
+    left: 24px;
+    height: 24px;
+    border-radius: 10px;
+    padding: 10px;
     transition: fill 200ms, background-color 200ms;
 }
 

@@ -31,4 +31,11 @@ function toggleAnimations() {
     }
 }
 
-export { currentUnit, toggleUnit, animations, toggleAnimations };
+// Detect if the user has "prefers-reduced-motion" setting active
+function detectMotionPrefs() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)") == true) {
+        animations = false;
+    }
+}
+
+export { currentUnit, toggleUnit, animations, toggleAnimations, detectMotionPrefs };
