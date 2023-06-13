@@ -155,16 +155,28 @@ function displaySky(data) {
             })
             document.querySelector(".sky").classList.add("overcast-night");
             makeStars();
-}
+        } else if (rainCodes.includes(condition)) {
+                    /////////////////
+                    // Rainy night //
+                    /////////////////
+            // Remove old
+            document.querySelector(".sky").classList.remove("clear-night", "clear-day", "overcast-day");
+            // Add new
+            document.querySelector(".clouds").style.display = "block";
+            document.querySelectorAll(".cloud").forEach(cloud => {
+                cloud.classList.remove("light-cloud");
+                cloud.classList.add("dark-cloud");
+            })
+            document.querySelector(".sky").classList.add("overcast-night");
+            makeStars();
+            makeRain();
+        }
     }
 }
 /*
-        case rainCodes.includes(condition):
-            console.log("It's raining");
-            break;
-        case snowCodes.includes(condition):
-            console.log("It's snowing");
-            break;
+case snowCodes.includes(condition):
+    console.log("It's snowing");
+    break;
 */
 
 function randomIntFromInterval(min, max) {
