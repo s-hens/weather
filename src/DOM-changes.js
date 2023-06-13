@@ -3,13 +3,9 @@ import { currentUnit, animations } from "./user-settings";
 
 // Weather result codes
 const clearCode = 1000;
-
 const partlyCloudyCode = 1003;
-
 const cloudyCodes = [ 1006, 1009, 1030, 1135, 1147 ];
-
 const rainCodes = [ 1063, 1072, 1087, 1150, 1153, 1168, 1171, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1240, 1243, 1246, 1273, 1276 ];
-
 const snowCodes = [ 1066, 1069, 1114, 1117, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264, 1279, 1282 ];
 
 // Display results on the page
@@ -54,8 +50,6 @@ function printData(data) {
 // Display sky
 function displaySky(data) {
     let condition = data.current.condition.code;
-    //let condition = 1066;
-
     if (data.current.is_day == 1) {
         if (condition == clearCode) {
                     ///////////////
@@ -176,7 +170,7 @@ function displaySky(data) {
                 cloud.classList.add("dark-cloud");
             })
             document.querySelector(".sky").classList.add("overcast-night");
-            makeStars();
+            //makeStars();
         } else if (rainCodes.includes(condition)) {
                     /////////////////
                     // Rainy night //
@@ -211,6 +205,38 @@ function displaySky(data) {
             makeSnow();
         }
     }
+    checkAnimations();
+}
+
+// Check animations
+function checkAnimations() {
+    if (animations == true) {
+        document.querySelectorAll(".cloud").forEach(cloud => {
+            cloud.style.animationPlayState = "running";
+        })
+        document.querySelectorAll(".star").forEach(star => {
+            star.style.animationPlayState = "running";
+        })
+        document.querySelectorAll(".raindrop").forEach(raindrop => {
+            raindrop.style.animationPlayState = "running";
+        })
+        document.querySelectorAll(".snowflake").forEach(snowflake => {
+            snowflake.style.animationPlayState = "running";
+        })
+    } else if (animations == false) {
+        document.querySelectorAll(".cloud").forEach(cloud => {
+            cloud.style.animationPlayState = "paused";
+        })
+        document.querySelectorAll(".star").forEach(star => {
+            star.style.animationPlayState = "paused";
+        })
+        document.querySelectorAll(".raindrop").forEach(raindrop => {
+            raindrop.style.animationPlayState = "paused";
+        })
+        document.querySelectorAll(".snowflake").forEach(snowflake => {
+            snowflake.style.animationPlayState = "paused";
+        })
+    }
 }
 
 function randomIntFromInterval(min, max) {
@@ -234,9 +260,6 @@ function makeStars() {
         star.style.top = `${top}%`;
         star.style.left = `${left}%`;
         star.style.transform = `translate(${offsetX}px, ${offsetY}px`;
-        if (animations == false) {
-            star.style.animation = "none";
-        }
         document.querySelector(".stars").appendChild(star);
     }
 }
@@ -282,4 +305,4 @@ function makeSnow() {
     }
 }
 
-export { printData, displaySky };
+export { printData, displaySky, checkAnimations };

@@ -1,5 +1,5 @@
 import { lastData } from "./data";
-import { printData, displaySky } from "./DOM-changes";
+import { printData, checkAnimations } from "./DOM-changes";
 
 // Toggle units
 let currentUnit = "C";
@@ -20,17 +20,14 @@ function toggleUnit() {
 let animations = true;
 
 function toggleAnimations() {
-    document.querySelectorAll("button").forEach(button => {
-        button.classList.toggle("no-animation");
-    })
     if (animations == true) {
         animations = false;
         document.querySelector(".animation").textContent = "Turn On Animations";
-        displaySky(lastData);
+        checkAnimations();
     } else if (animations == false) {
         animations = true;
         document.querySelector(".animation").textContent = "Turn Off Animations";
-        displaySky(lastData);
+        checkAnimations();
     }
 }
 

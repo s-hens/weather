@@ -205,6 +205,7 @@ input[type="text"]:focus {
 
 .cloud:first-of-type {
     animation: 10s infinite swell, 4s infinite bob;
+    animation-play-state: paused;
     top: calc(var(--cloudheight) * -0.25);
     left: calc(var(--cloudheight) * -0.25);
 }
@@ -218,6 +219,7 @@ input[type="text"]:focus {
     bottom: 0;
     left: 10%;
     animation: 25s infinite bob;
+    animation-play-state: paused;
 }
 
 .cloud:first-of-type::after {
@@ -232,6 +234,7 @@ input[type="text"]:focus {
 
 .cloud:last-of-type {
     animation: 15s infinite swell, 4s infinite bob;
+    animation-play-state: paused;
     bottom: calc(var(--cloudheight) * -0.25);
     right: calc(var(--cloudheight) * -0.25);
 }
@@ -245,6 +248,7 @@ input[type="text"]:focus {
     bottom: 0;
     left: 35%;
     animation: 20s infinite bob;
+    animation-play-state: paused;
 }
 
 .cloud:last-of-type::after {
@@ -256,6 +260,7 @@ input[type="text"]:focus {
     top: -50%;
     left: 15%;
     animation: 5s infinite swell;
+    animation-play-state: paused;
 }
 
 @keyframes swell {
@@ -292,10 +297,12 @@ input[type="text"]:focus {
 
 .star:nth-of-type(10n) {
     animation: 4s infinite twinkle1;
+    animation-play-state: paused;
 }
   
 .star:nth-of-type(15n) {
     animation: 5s infinite twinkle2;
+    animation-play-state: paused;
 }
   
 @keyframes twinkle1 {
@@ -340,6 +347,7 @@ input[type="text"]:focus {
     border-radius: 50%;
     position: fixed;
     animation: 2s linear infinite rainfall;
+    animation-play-state: paused;
 }
   
 @keyframes rainfall {
@@ -359,6 +367,7 @@ input[type="text"]:focus {
     border-radius: 50%;
     position: fixed;
     animation: 15s linear infinite snowfall, 10s infinite sway;
+    animation-play-state: paused;
 }
   
 @keyframes snowfall {
@@ -386,6 +395,6 @@ input[type="text"]:focus {
 
 /* No animation settings */
 
-.no-animation {
-    transition: none;
+.no-animation, .no-animation::before, .no-animation::after {
+    animation-play-state: paused;
 }
