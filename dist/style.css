@@ -392,9 +392,21 @@ input[type="text"]:focus {
     }
 }
 
+/* Link back to GitHub */
 
-/* No animation settings */
+.link-back {
+    fill: #151515;
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: fill 200ms, background-color 200ms;
+}
 
-.no-animation, .no-animation::before, .no-animation::after {
-    animation-play-state: paused;
+.link-back:hover {
+    background-color: #151515;
+    fill: #ffffff;
 }
